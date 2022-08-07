@@ -12,13 +12,21 @@ import { invoke } from '@tauri-apps/api'
 function App() {
   const [count, setCount] = useState(0)
 
+  /**
+   * A slightly contrived way to increase the count
+   * to show how to invoke Rust commands from the frontend
+   */
   const rustIncrease = async () => {
-    newNumber = await invoke('increase', {num: count})
+    let newNumber = await invoke('increase', {num: count})
     setCount(newNumber)
   }
 
+  /**
+   * A slightly contrived way to decrease the count
+   * to show how to invoke Rust commands from the frontend
+   */
   const rustDecrease = async () => {
-    newNumber = await invoke('decrease', {num: count})
+    let newNumber = await invoke('decrease', {num: count})
     setCount(newNumber)
   }
 
@@ -28,7 +36,7 @@ function App() {
       <Text>It combines a fast and safe Rust backend with a React frontend.</Text>
       <HStack>
         <Button onClick={rustDecrease}>-</Button>
-        <Input value={count} isReadOnly></Input>
+        <Input value={count} isReadOnly />
         <Button onClick={rustIncrease}>+</Button>
       </HStack>
     </Container>
