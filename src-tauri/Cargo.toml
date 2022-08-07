@@ -1,11 +1,11 @@
 [package]
-name = "app"
+name = "tauri_template"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
-default-run = "app"
+description = "A template Tauri App"
+authors = ["dcl10"]
+license = "Unlicense"
+repository = "https://github.com/dcl10/tauri-app-template"
+default-run = "tauri_template"
 edition = "2021"
 rust-version = "1.57"
 
