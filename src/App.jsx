@@ -1,33 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { 
+  Button,
+  Container,
+  Heading,
+  HStack,
+  Input,
+  Text,
+} from '@chakra-ui/react'
+import { invoke } from '@tauri-apps/api'
 
 function App() {
   const [count, setCount] = useState(0)
 
+  const rustIncrease = async () => {
+    newNumber = await invoke('increase', {num: count})
+    setCount(newNumber)
+  }
+
+  const rustDecrease = async () => {
+    newNumber = await invoke('decrease', {num: count})
+    setCount(newNumber)
+  }
+
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Container className='App'>
+      <Heading>This is a template Tauri app.</Heading>
+      <Text>It combines a fast and safe Rust backend with a React frontend.</Text>
+      <HStack>
+        <Button onClick={rustDecrease}>-</Button>
+        <Input value={count} isReadOnly></Input>
+        <Button onClick={rustIncrease}>+</Button>
+      </HStack>
+    </Container>
   )
 }
 
